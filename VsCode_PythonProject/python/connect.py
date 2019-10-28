@@ -16,10 +16,16 @@ class Connect():
     cursor.close()   #关闭游标
     # conn.close()  #关闭连接
 
-  def addP(self,conn,name):
+  def addP(self,conn,name,pData=None):
     cursor = conn.cursor()   #创建一个游标对象,python里的sql语句都要通过cursor来执行
     sql = "insert into P_name (name) values('%s')"%(name)
     cursor.execute(sql)   #执行sql语句
+    pid=cursor.last_id
+
+    if pData is not None:
+      sql="insert into player(pid,playerContent) values(%s,%s)" % (pid,pData)
+      cursor.execute(sql)
+
     conn.commit()  #提交
     cursor.close()   
     conn.close() 

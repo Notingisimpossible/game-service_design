@@ -56,7 +56,7 @@ class MainTask():
     def tcpServer(self,port):
         reactor.listenTCP(port,YibinFactory(self,700))
     
-    def start(self,port=9000):
+    def start(self,port=8000):
         self.tcpServer(port)
         for th in self.threadArr:
             th.start()

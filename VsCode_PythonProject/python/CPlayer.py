@@ -33,3 +33,13 @@ class CPlayer():
 
     def setName(self,name):
         self.baseInfo["name"]=name
+
+    def getid(self):
+        return self.id
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        return state
+
+    def __setstate__(self,state):
+        self.__dict__.update(state)
