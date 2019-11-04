@@ -9,41 +9,44 @@ class Connect():
           print("连接成功!")
           return connect
 
-  def creatL(self,conn):
-    cursor = conn.cursor()   #创建一个游标对象,python里的sql语句都要通过cursor来执行
-    cursor.execute("create table P_name(name varchar(20) primary key)")   #执行sql语句
-    conn.commit()  #提交
-    cursor.close()   #关闭游标
-    # conn.close()  #关闭连接
+  # def creatL(self,conn):
+  #   cursor = conn.cursor()   #创建一个游标对象,python里的sql语句都要通过cursor来执行
+  #   cursor.execute("create table P_name(name varchar(20) primary key)")   #执行sql语句
+  #   conn.commit()  #提交
+  #   cursor.close()   #关闭游标
+  #   # conn.close()  #关闭连接
 
-  def addP(self,conn,name,pData=None):
+  def addP(self,conn,na,pa,pData):
     cursor = conn.cursor()   #创建一个游标对象,python里的sql语句都要通过cursor来执行
-    sql = "insert into P_name (name) values('%s')"%(name)
+    sql = "insert into P_name (name,password) values('%s','%s')"%(na,pa)
     cursor.execute(sql)   #执行sql语句
-    pid=cursor.last_id
+    pid=cursor.lastrowid
 
+    print(pData)
     if pData is not None:
-      sql="insert into player(pid,playerContent) values(%s,%s)" % (pid,pData)
-      cursor.execute(sql)
+      print(pid)
+      
+      sql2="insert into player (playerContent) values({{json}})" % (pData)
+      cursor.execute(sql2)
 
     conn.commit()  #提交
     cursor.close()   
     conn.close() 
 
-  def exists_of_table(self,conn,table_name): #判断表格是否已经存在
-    cursor = conn.cursor()
-    sql = "SELECT table_name, table_type FROM information_schema.tables;"
-    cursor.execute(sql)
-    tables = [cursor.fetchall()] #返回表格名
+  # def exists_of_table(self,conn,table_name): #判断表格是否已经存在
+  #   cursor = conn.cursor()
+  #   sql = "SELECT table_name, table_type FROM information_schema.tables;"
+  #   cursor.execute(sql)
+  #   tables = [cursor.fetchall()] #返回表格名
 
-    table_list = re.findall('(\'.*?\')',str(tables)) #固定语句
-    table_list = [re.sub("'",'',each) for each in table_list]
-    if table_name in table_list:
-      cursor.close()
-      return 1
-    else:
-      cursor.close()
-      return 0
+  #   table_list = re.findall('(\'.*?\')',str(tables)) #固定语句
+  #   table_list = [re.sub("'",'',each) for each in table_list]
+  #   if table_name in table_list:
+  #     cursor.close()
+  #     return 1
+  #   else:
+  #     cursor.close()
+  #     return 0
 
   def exists_of_rname(self,conn,name):#判断该名字是否已经存在数据库表中
     cursor = conn.cursor()

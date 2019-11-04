@@ -17,7 +17,6 @@ class MsgRecvThread (threading.Thread):
         self.protoMgr=protoFuncMgr.protoFcunMgr()
 
     def run(self):
-        # c=connect.Connect()
         while True:
             while not self.mainTask.msgRecvQueue.empty():
                 try:                

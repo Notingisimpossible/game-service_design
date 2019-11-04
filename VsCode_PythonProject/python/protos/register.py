@@ -10,6 +10,7 @@ class Proto_01():
   @staticmethod
   def register(recvData):
     mainTask,client,data=recvData
+    
     c=connect.Connect()
     conn=c.conn()
     # (mainTask,client,data) #连接数据
@@ -21,7 +22,7 @@ class Proto_01():
       # c.addP(conn,username)
 
       p=mainTask.players.newPlayer(data["data"]["username"])
-      c.addP(conn,username,CMgrPlayer.savewithPickle(p))
+      c.addP(conn,username,password,CMgrPlayer.savewithPickle(p))
       # c.addPlayer(CMgrPlayer.savewithPickle(p))
 
       res={

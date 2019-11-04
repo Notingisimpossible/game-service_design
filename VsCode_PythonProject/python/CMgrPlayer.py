@@ -38,10 +38,10 @@ class CMgrPlayer(dict):
         return player
 
 if __name__ == "__main__":
-    c=CMgrPlayer(None)
+    c=CMgrPlayer()
 
     x=CPlayer()
-    x.baseinfo["nickname"]="张三"
+    x.baseInfo["nickname"]="张三"
     t=CMgrPlayer.savewithPickle(x) #序列化
     print(t) #输出x的序列化
 
