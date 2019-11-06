@@ -22,11 +22,8 @@ class Connect():
     cursor.execute(sql)   #执行sql语句
     pid=cursor.lastrowid
 
-    print(pData)
     if pData is not None:
-      print(pid)
-      
-      sql2="insert into player (playerContent) values({{json}})" % (pData)
+      sql2="insert into player (pid,playerContent) values('%d')" % (pid,pData)
       cursor.execute(sql2)
 
     conn.commit()  #提交
