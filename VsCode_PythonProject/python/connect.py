@@ -2,6 +2,7 @@ from os import getenv
 import pymssql
 import re
 
+
 class Connect():
   def conn(self):
       connect = pymssql.connect('127.0.0.1', 'sa', 's0217', 'game_Player') #服务器名,账户,密码,数据库名
@@ -23,10 +24,12 @@ class Connect():
     pid=cursor.lastrowid
 
     if pData is not None:
-      sql2="insert into player (pid,playerContent) values('%d')" % (pid,pData)
-      cursor.execute(sql2)
-
-    conn.commit()  #提交
+      # sql2="insert into player (pid,playerContent) values('%d',%s)" % (pid,pymssql.Binary(pData))
+      sql2="insert into player (pid,playerContent) values(%d,%s)"
+      # print(type(pData))
+      # xxx=str(pData)
+      cursor.execute(sql2,(pid,pymssql.Binary(pData)))#,(pid,xxx) #pData.decode('gbk')
+      conn.commit()
     cursor.close()   
     conn.close() 
 
