@@ -58,10 +58,16 @@ class Dictionary():
     cursor.close()
 
   #修改单词解释
-  def changeWord(conn, key, exp):
+  def changeWord(conn, key, ckey, exp):
     cursor = conn.cursor()
-    sql = "update dict set explain = '%s' where keys = '%s'"%(exp, key)
-    cursor.execute(sql)
+    if ckey == '':
+      sql = "update dict set explain = '%s' where keys = '%s'"%(exp, key)
+      cursor.execute(sql)
+    else:
+      sql = "update dict set explain = '%s' where keys = '%s'"%(exp, key)
+      sql1 = "update dict set keys = '%s' where keys = '%s'"%(ckey, key)
+      cursor.execute(sql)
+      cursor.execute(sql1)
     conn.commit()
     print('您已经成功修改该单词！')
     cursor.close()
@@ -127,11 +133,12 @@ if __name__ == "__main__":
         dic.addWord(conn, akey, aexp)
     elif key == 3:  #修改单词解释
       ckey = input('请输入您想要修改的单词：')
+      cfkey = input('请输入您要修改后的单词(不改单词则直接回车)：')
       cexp = input('请输入修改后的单词解释：')
       if dic.exists_key(conn, ckey) == 0: #判断要修改的单词是否存在
         print('字典中不存在该单词！')
       else:
-        dic.changeWord(conn, ckey, cexp)
+        dic.changeWord(conn, ckey, cfkey, cexp)
     elif key == 4:  #查看全部单词
       dic.seeWord(conn)
     else:
