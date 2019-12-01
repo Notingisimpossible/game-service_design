@@ -33,7 +33,7 @@ protected void onDestroy() {
 
 ## 其他引用  
 ### 图片  
-![图片名称](https://www.baidu.com/img/bd_logo1.png)  
+![图片名称](https://www.baidu.com/img/bd_logo1.png#pic_center =50x50)  
 ### 链接  
 [链接名称](https://www.baidu.com/)
 
@@ -53,4 +53,69 @@ protected void onDestroy() {
 
 ## 引用
 > 第一行引用文字  
-> 第二行引用文字   
+> 第二行引用文字
+
+## 标记文本
+==左右各两个等号==
+## 删除文本
+~~左右各两个波浪符~~
+
+- [ ] 计划任务 
+- [x] 完成任务
+
+## 新的甘特图功能，丰富你的文章
+
+```mermaid
+gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to mermaid
+        section 现有任务
+        已完成               :done,    des1, 2014-01-06,2014-01-08
+        进行中               :active,  des2, 2014-01-09, 3d
+        计划一               :         des3, after des2, 5d
+        计划二               :         des4, after des3, 5d
+```
+- 关于 **甘特图** 语法，参考 [这儿][2],
+
+## UML 图表
+
+可以使用UML图表进行渲染。 [Mermaid](https://mermaidjs.github.io/). 例如下面产生的一个序列图：
+
+```mermaid
+sequenceDiagram
+张三 ->> 李四: 你好！李四, 最近怎么样?
+李四-->>王五: 你最近怎么样，王五？
+李四--x 张三: 我很好，谢谢!
+李四-x 王五: 我很好，谢谢!
+Note right of 王五: 李四想了很长时间, 文字太长了<br/>不适合放在一行.
+
+李四-->>张三: 打量着王五...
+张三->>王五: 很好... 王五, 你怎么样?
+```
+
+这将产生一个流程图。:
+
+```mermaid
+graph LR
+A[长方形] -- 链接 --> B((圆))
+A --> C(圆角长方形)
+B --> D{菱形}
+C --> D
+```
+
+- 关于 **Mermaid** 语法，参考 [这儿][3],
+
+## FLowchart流程图
+
+我们依旧会支持flowchart的流程图：
+```mermaid
+flowchat
+st=>start: 开始
+e=>end: 结束
+op=>operation: 我的操作
+cond=>condition: 确认？
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
