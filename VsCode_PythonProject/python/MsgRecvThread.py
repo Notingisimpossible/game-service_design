@@ -10,6 +10,7 @@ import protoFuncMgr
 
 
 class MsgRecvThread (threading.Thread):
+    PId = ''
     def __init__(self, mainTask,name=''):
         threading.Thread.__init__(self)
         self.name=name # "生产者"

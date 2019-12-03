@@ -6,6 +6,7 @@ sys.path.append(pro_dir)
 
 from CMgrPlayer import CMgrPlayer
 import connect
+
 class Proto_01():
   @staticmethod
   def register(recvData):
@@ -23,8 +24,10 @@ class Proto_01():
 
       p=mainTask.players.newPlayer(data["data"]["username"])
       c.addP(conn,username,password,CMgrPlayer.savewithPickle(p))
-      # c.addPlayer(CMgrPlayer.savewithPickle(p))
 
+      playerData = c.get_playerContent(conn)
+      print(playerData)
+      # c.addPlayer(CMgrPlayer.savewithPickle(p))
       res={
       "code":0,
       "msg":"register success",
@@ -57,6 +60,8 @@ class Proto_01():
     data=recvData[2]
     username=data["data"]["username"]
     password=data["data"]["password"]
+
+    
     if (c.exists_of_rname(conn,username)==1):
       print(username," login success")
     else:

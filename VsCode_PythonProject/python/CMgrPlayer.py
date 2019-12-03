@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
 
     k=CMgrPlayer.loadwithpickle(t)
-
+    print(k)
 
     print(k.__dict__)
     
