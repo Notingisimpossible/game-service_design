@@ -10,7 +10,7 @@ class Ship(Sprite):
         self.ai_settings = ai_settings
         
         # 加载飞船图像并获取其外接矩形
-        self.image = pygame.image.load(r'F:\game-service_design\Project_one\alien_invasion\images\ship.bmp')
+        self.image = pygame.image.load(r'F:\game-service_design\Project_one\alien_invasion\images\ships.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         
