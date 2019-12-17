@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    background: url(./images/mount.png) 0 0 no-repeat;/*不平埔*/
+    background-size: 100% 100%;
+}
+header .mask{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20,20,20, 1);
+    opacity: .65;
+    overflow: hidden; 
+}
+header .content{
+    width: 970px;
+    margin: 0 auto;
+    color: rgba(255, 255,255, .7);
+}
+header .hello .title{
+    font-size:62px;
+    font-weight:200;
+    color:rgba(255,255,255,1);
+    line-height:72px;/* 属性设置行间的距离（行高）*/
+    text-align: center;
+}
+
+header .text{
+    width:766px;
+    font-size:20px;
+    font-weight:200;
+    color:rgba(255,255,255,1);
+    line-height:32px;
+    opacity:0.7;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 86px;
+}
+
+header .hello .title{
+    margin-top: 208px;
+}
+.creat{
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 2px;
+    width: 100%;
+    height: 200px;/*!!!!*/
+    padding: 61px 100px 52px ;
+    margin-top: 104px;
+    box-sizing: border-box;
+    margin-bottom: 220px;
+}
+header .creat .title{
+    width:241px;
+    font-size:16px;
+    font-family:Montserrat;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+    line-height:28px;
+    margin: 0 auto;
+    margin-bottom: .3%;
+}
+header .creat .profile{
+    width:170px;
+    font-size:10px;
+    font-family:Montserrat;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+    opacity:0.3;
+    margin-left: 36.16%;
+    margin-right: 46.13%;
+    margin-bottom: 2%;
+}
+.creat .input input[type="text"]{
+    outline: none;
+    border-radius: 2px;
+    width: 292px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0);
+    text-align: center;/*设置字体缩进*/
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.creat .input input[type="password"]{
+    outline: none;
+    border-radius: 2px;
+    width: 292px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0);
+    text-align: center;/*设置字体缩进*/
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.creat .input input[type="button"]{
+    width: 125px;
+}
+.creat .input{
+    display: flex;
+    justify-content: space-between;
+}

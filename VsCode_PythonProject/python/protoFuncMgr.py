@@ -13,6 +13,7 @@ class protoFcunMgr(dict):
   def addAll(self):
     self.addFunc(1,1,register.Proto_01.register)
     self.addFunc(1,2,register.Proto_01.login)
+    self.addFunc(1,3,register.Proto_01.useskill)
 
   def getFunc(self,bt,lt):
     key=bt<<16+lt

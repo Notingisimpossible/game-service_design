@@ -24,9 +24,6 @@ class Proto_01():
 
       p=mainTask.players.newPlayer(data["data"]["username"])
       c.addP(conn,username,password,CMgrPlayer.savewithPickle(p))
-
-      playerData = c.get_playerContent(conn)
-      print(playerData)
       # c.addPlayer(CMgrPlayer.savewithPickle(p))
       res={
       "code":0,
@@ -36,6 +33,7 @@ class Proto_01():
       client.transport.write(json.dumps(res).encode('utf8'))
       print(username,' register success')
     else:
+      client.transport.write(json.dumps({"msg":"The name has been register, please register first!"}).encode('utf8'))
       print("该名字已被注册，请换个名字!")    
     # 做下面操作之前，应该先查数据库，名字不存在，才能继续
     
@@ -55,6 +53,7 @@ class Proto_01():
 
   @staticmethod
   def login(recvData):
+    mainTask,client,data=recvData
     c=connect.Connect()
     conn=c.conn()
     data=recvData[2]
@@ -63,11 +62,36 @@ class Proto_01():
 
     
     if (c.exists_of_rname(conn,username)==1):
-      print(username," login success")
+      if (c.judge_password(conn,username,password) == 1):
+        playerData = CMgrPlayer.loadwithpickle(c.get_playerContent(conn))
+        res={
+        "code":0,
+        "msg":"login success",
+        "data":(playerData.baseInfo,playerData.dtInfo),
+        "skill 1": "Fire attack",
+        "skill 2":"thump"
+        }
+        client.transport.write(json.dumps(res).encode('utf8'))
+        print(username," login success")
+      else:
+        client.transport.write(json.dumps({"msg":"password error, login fail!"}).encode('utf8'))
+        print("密码错误，登录失败")
     else:
-      print(username,'please register first')
+      client.transport.write(json.dumps({"msg":"please register first!"}).encode('utf8'))
+      print(username,'用户不存在请先注册！')
       pass
 
   @staticmethod
-  def useskill():
+  def useskill(recvData):
+    mainTask,client,data=recvData
+    c=connect.Connect()
+    conn=c.conn()
+    data=recvData[2]
+    skill = data["data"]["skill"]
+    if skill == "1":
+      client.transport.write(json.dumps({"msg":"You use Fire attack, enemy's HP reduce 10"}).encode("utf8"))
+    elif skill == "2":
+      client.transport.write(json.dumps({"msg": "You use thump, enemy's HP reduce 50"}).encode("utf8"))
+    else:
+      client.transport.write(json.dumps({"msg":"You attack is miss"}).encode("utf8"))
     pass

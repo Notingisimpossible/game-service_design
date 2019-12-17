@@ -1,12 +1,13 @@
 from os import getenv
 import pymssql
 import re
-
+import json
+import pickle
 
 
 class Connect():
   def __init__(self):
-    self.pid = 0
+    self.pid = 1
   def conn(self):
       connect = pymssql.connect('127.0.0.1', 'sa', 's0217', 'game_Player') #服务器名,账户,密码,数据库名
       if connect:
@@ -70,17 +71,35 @@ class Connect():
     cursor = conn.cursor()
     # pid = cursor.lastrowid 
     # pid = Connect.get_id()
-    sql = "select playerContent from player where player.pid='%d'"%(self.pid)
+    sql = "select playerContent from player where player.pid=%d"%(self.pid)
+    # print(self.pid)
     cursor.execute(sql)
-    conn.commit()
+    
     players = cursor.fetchall()#接收游标返回的全部结果
+    # players = players[0]
+    # print(players[0][0])
+
+    # print(pickle.loads(players[0][0]))
 
     if players:
-      cursor.close()
       conn.close()
-      return players
+      return players[0][0]
     else:
-      cursor.close()
       conn.close()
       return None
-      
+
+  def judge_password(self,conn,na,pd):
+    cursor = conn.cursor()
+    sql = "select password from P_name where name = '%s'"%(na)
+    cursor.execute(sql)
+
+    pds = cursor.fetchall()
+    if pds[0][0] == pd:
+      return 1
+    else:
+      return 0
+# if __name__ == "__main__":
+#   xxx=Connect()
+#   xxx.pid=20
+#   connx=xxx.conn()
+#   xxx.get_playerContent(connx)

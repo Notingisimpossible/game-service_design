@@ -16,11 +16,11 @@ class CPlayer():
             "VIPExp":0,
 
             "emails":[],
-            "skills":[],
+            "skills":[1,2],
             
         }
         self.dtInfo={
-            "lastlogin":'2019-3-13',
+            "lastlogin":'2019-12-16',
             "playtotaltime":500,
         }
 
